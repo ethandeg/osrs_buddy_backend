@@ -1,16 +1,13 @@
 from flask import Flask, jsonify, request
-from osrsbox_api import item, get_item_by_name
+from .routes import item_routes
 
 app = Flask(__name__)
+app.debug = True
+BASE_URL = '/api/v1'
+app.register_blueprint(item_routes, url_prefix=f'{BASE_URL}/items')
 
-
-@app.route("/")
+@app.route(BASE_URL)
 def say_hello():
-    return jsonify(item)
+    return jsonify({'msg': 'hello, worlds'})
 
 
-@app.route("/items")
-def get_item():
-    name = request.args['name']
-    item = get_item_by_name(name)
-    return jsonify(item)
