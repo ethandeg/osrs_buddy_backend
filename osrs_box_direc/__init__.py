@@ -1,1 +1,1 @@
-from .osrsbox_api import item, get_item_by_name
+from .osrsbox_api import get_item_by_name, get_monster_by_name, get_prayer_by_name, monsters as all_monsters, items as all_items, prayers as all_prayers

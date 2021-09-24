@@ -1,10 +1,17 @@
-from osrsbox import items_api
-print('__file__={0:<35} | __name__={1:<25} | __package__={2:<25}'.format(__file__,__name__,str(__package__)))
+from osrsbox import items_api, monsters_api, prayers_api
+# print('__file__={0:<35} | __name__={1:<25} | __package__={2:<25}'.format(__file__,__name__,str(__package__)))
 items = items_api.load()
-
+monsters = monsters_api.load()
+prayers = prayers_api.load()
 
 def get_item_by_name(name):
-    return [i for i in items if i.name.lower() == name.lower()]
+    return [i for i in items if i.name.lower() in name.lower() or name.lower() in i.name.lower()]
+
+def get_monster_by_name(name):
+    return [i for i in monsters if i.name.lower() in name.lower() or name.lower() in i.name.lower()]
+
+def get_prayer_by_name(name):
+    return [i for i in prayers if i.name.lower() in name.lower() or name.lower() in i.name.lower()]
 
 def validate_item_filter(filters):
     valid_filters = ['id', 'name', 'members', 'tradeable', 'stackable', 'noted', 'noteable', 'equipable', 'cost'
@@ -21,3 +28,5 @@ def validate_item_filter(filters):
 #     if valid:
 #         for filter in filters:
 #             items_to_filter = [i for i in items_to_filter if i[filter].lower() == ]
+
+    
